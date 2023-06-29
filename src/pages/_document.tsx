@@ -10,6 +10,8 @@ import Document, {
 } from "next/document";
 import * as React from "react";
 
+import { flame } from "@/theme/fonts";
+
 import createEmotionCache from "../createEmotionCache";
 import theme from "../theme";
 import { MyAppProps } from "./_app";
@@ -20,7 +22,7 @@ interface MyDocumentProps extends DocumentProps {
 
 export default function MyDocument({ emotionStyleTags }: MyDocumentProps) {
   return (
-    <Html lang="en">
+    <Html lang="en" className={flame.className}>
       <Head>
         <meta name="theme-color" content={theme.palette.primary.main} />
         <link rel="shortcut icon" href="/favicon.ico" />
