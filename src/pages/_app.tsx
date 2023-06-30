@@ -1,3 +1,7 @@
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+
 import { CacheProvider, EmotionCache } from "@emotion/react";
 import { ThemeProvider } from "@mui/material/styles";
 import { NextPage } from "next";

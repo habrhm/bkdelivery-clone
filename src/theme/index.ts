@@ -12,6 +12,7 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           textTransform: "none",
+          color: "white",
         },
       },
     },
@@ -19,6 +20,7 @@ const theme = createTheme({
   palette: {
     primary: {
       main: "#ed7801",
+      dark: "#8b542f",
     },
     secondary: {
       main: "#faaf18",

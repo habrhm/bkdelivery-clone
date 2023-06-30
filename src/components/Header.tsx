@@ -19,6 +19,7 @@ export const Header = React.memo(function Header() {
         height: "76px",
         backgroundColor: "#2D2D2D",
         borderBottom: `1px solid ${theme.palette.divider}`,
+        zIndex: 2,
       })}
       color="transparent"
       position="relative"
