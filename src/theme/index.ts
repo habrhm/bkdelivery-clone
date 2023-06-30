@@ -6,6 +6,10 @@ import { flame } from "./fonts";
 const theme = createTheme({
   typography: {
     fontFamily: flame.style.fontFamily,
+    subtitle2: {
+      lineHeight: "20px",
+      fontSize: "18px",
+    },
   },
   components: {
     MuiButton: {
@@ -17,13 +21,18 @@ const theme = createTheme({
       },
     },
   },
+
   palette: {
     primary: {
       main: "#ed7801",
       dark: "#8b542f",
     },
+    text: {
+      secondary: "#502314",
+    },
     secondary: {
       main: "#faaf18",
+      light: "#fbe6d6",
     },
   },
 });

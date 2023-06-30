@@ -24,6 +24,26 @@ export interface Menu {
   slug: string;
   img: string;
 }
+export interface Product {
+  id: number;
+  thumbImg: {
+    url: string;
+    alt: string;
+  };
+  imgs: {
+    url: string;
+    alt: string;
+  }[];
+  name: string;
+  title?: string;
+  description?: string;
+  slug: string;
+  price: number;
+  optionalMealPrice?: number;
+  upsizePrice?: number;
+  menuId?: number;
+  extraProducts?: number[];
+}
 
 declare module "@mui/material/styles" {
   interface BreakpointOverrides {

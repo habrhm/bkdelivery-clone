@@ -1,12 +1,12 @@
 import { HomePage } from "@/features/home";
 import { MainLayout } from "@/layouts/Main";
 
-const Landing = () => {
+const Home = () => {
   return <HomePage />;
 };
 
-Landing.getLayout = (page: React.ReactElement) => {
+Home.getLayout = (page: React.ReactElement) => {
   return <MainLayout>{page}</MainLayout>;
 };
 
-export default Landing;
+export default Home;

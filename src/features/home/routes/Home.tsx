@@ -1,5 +1,3 @@
-import "swiper/css";
-
 import {
   Container,
   Stack,
@@ -93,6 +91,7 @@ export const HomePage = () => {
           <Grid sx={{ width: "100%" }} container spacing={2}>
             {menus.map((item) => (
               <Grid
+                key={item.id}
                 sx={{
                   display: "flex",
                   alignItems: "stretch",

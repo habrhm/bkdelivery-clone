@@ -46,7 +46,7 @@ export const Header = React.memo(function Header() {
         >
           <Stack sx={{ alignItems: "stretch" }} direction="row" spacing={4}>
             <Stack sx={{ alignItems: "center" }} direction="row" spacing={4}>
-              <Link href="/" passHref legacyBehavior>
+              <Link href="/menus" passHref legacyBehavior>
                 <MaterialLink underline="none">
                   <Typography
                     sx={(theme) => ({
