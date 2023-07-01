@@ -1,4 +1,5 @@
 export * from "./Cart";
+export * from "./Check";
 export * from "./ChevronLeft";
 export * from "./Facebook";
 export * from "./Instagram";
@@ -7,5 +8,6 @@ export * from "./Minus";
 export * from "./Phone";
 export * from "./Plus";
 export * from "./Search";
+export * from "./Trash";
 export * from "./Twitter";
 export * from "./Youtube";

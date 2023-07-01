@@ -1,3 +1,8 @@
+export interface ExtraCount {
+  product: Product;
+  count: number;
+}
+
 export type PaletteName =
   | "common"
   | "mode"
@@ -56,4 +61,10 @@ declare module "@mui/material/styles" {
     tablet: true;
     desktop: true;
   }
+}
+
+export interface Order {
+  product: Product;
+  count: number;
+  extras: ExtraCount[];
 }

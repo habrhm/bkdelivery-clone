@@ -7,10 +7,11 @@ import { Header } from "@/components/Header";
 
 type Props = React.PropsWithChildren<{
   title?: string;
+  plainBg?: boolean;
 }>;
 
-export const MainLayout = ({ children, title }: Props) => {
-  const pageTitle = title ? `${title} | Burger King` : "Burger King";
+export const MainLayout = ({ children, title, plainBg = false }: Props) => {
+  const pageTitle = title ? `${title} - Burger King` : "Burger King";
 
   return (
     <>
@@ -19,7 +20,9 @@ export const MainLayout = ({ children, title }: Props) => {
       </Head>
       <Stack
         sx={{
-          background: `url("https://bkdelivery.co.id/static/website/img/BK_bg.jpg?5218847fa211") no-repeat center center fixed`,
+          background: plainBg
+            ? "#f9f4f2"
+            : `url("https://bkdelivery.co.id/static/website/img/BK_bg.jpg?5218847fa211") no-repeat center center fixed`,
           backgroundSize: "cover",
         }}
         minHeight="100vh"

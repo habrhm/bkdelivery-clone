@@ -4,10 +4,8 @@ import * as React from "react";
 
 import { MinusIcon, PlusIcon } from "@/assets/icons";
 import { useImageDimension } from "@/hooks/useImageDimension";
-import { Product } from "@/types";
+import { ExtraCount, Product } from "@/types";
 import { getCurrency } from "@/utils/getCurrency";
-
-import { ExtraCount } from "../types";
 
 interface Props {
   item: Product;

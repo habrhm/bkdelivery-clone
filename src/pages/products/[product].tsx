@@ -8,7 +8,7 @@ const Menu = () => {
 
 Menu.getLayout = (page: React.ReactElement) => {
   return (
-    <MainLayout>
+    <MainLayout plainBg>
       <MenuLayout>{page}</MenuLayout>
     </MainLayout>
   );

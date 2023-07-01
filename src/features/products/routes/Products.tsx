@@ -1,14 +1,15 @@
-import { Button, IconButton, Stack, Typography } from "@mui/material";
+import { Button, Stack, Typography } from "@mui/material";
 import { useRouter } from "next/router";
 import * as React from "react";
 
-import { MinusIcon, PlusIcon } from "@/assets/icons";
+import { CountInput } from "@/components/CountInput";
 import { products } from "@/data";
+import { useOrderStore } from "@/hooks/useOrderStore";
+import { ExtraCount } from "@/types";
 import { getCurrency } from "@/utils/getCurrency";
 
 import { ExtraItem } from "../components/ExtraItem";
 import { ProductImage } from "../components/ProductImage";
-import { ExtraCount } from "../types";
 
 export const ProductsPage = () => {
   const router = useRouter();
@@ -37,6 +38,8 @@ export const ProductsPage = () => {
     }
   }, [selectedProduct]);
 
+  const addOrder = useOrderStore((state) => state.addOrder);
+
   const handleAddCount = React.useCallback(() => {
     setitemCount(itemCount + 1);
   }, [itemCount]);
@@ -63,6 +66,18 @@ export const ProductsPage = () => {
     }
     return 0;
   }, [extras.length, itemCount, selectedExtras, selectedProduct]);
+
+  const handleAddOrder = React.useCallback(() => {
+    if (selectedProduct) {
+      addOrder({
+        count: itemCount,
+        extras: selectedExtras
+          .filter((item) => item.count > 0)
+          .sort((a, b) => a.product.id - b.product.id),
+        product: selectedProduct,
+      });
+    }
+  }, [addOrder, itemCount, selectedExtras, selectedProduct]);
 
   return (
     <Stack
@@ -192,42 +207,14 @@ export const ProductsPage = () => {
             </Stack>
           )}
         </Stack>
-        <Stack
-          sx={(theme) => ({
-            alignItems: "center",
-            alignSelf: "stretch",
-            justifyContent: "space-between",
-            border: `0.5px solid ${theme.palette.grey[300]}`,
-            borderRadius: "5px",
-            px: 2.5,
-            py: 0.5,
-          })}
-          direction="row"
-          spacing={1}
-        >
-          <IconButton
-            sx={() => ({
-              height: "24px",
-              width: "24px",
-            })}
-            color="primary"
-            onClick={handleSubstractCount}
-          >
-            <MinusIcon sx={{ fontSize: "18px" }} />
-          </IconButton>
-          <Typography sx={{ fontSize: "17px" }}>{itemCount}</Typography>
-          <IconButton
-            sx={() => ({
-              height: "24px",
-              width: "24px",
-            })}
-            color="primary"
-            onClick={handleAddCount}
-          >
-            <PlusIcon sx={{ fontSize: "18px" }} />
-          </IconButton>
-        </Stack>
-        <Button variant="contained">Add to Cart</Button>
+        <CountInput
+          count={itemCount}
+          onAdd={handleAddCount}
+          onSubstract={handleSubstractCount}
+        />
+        <Button variant="contained" onClick={handleAddOrder}>
+          Add to Cart
+        </Button>
       </Stack>
     </Stack>
   );

@@ -8,11 +8,14 @@ import {
 } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import * as React from "react";
 
 import { CartIcon } from "@/assets/icons";
 
 export const Header = React.memo(function Header() {
+  const router = useRouter();
+
   return (
     <AppBar
       sx={(theme) => ({
@@ -103,25 +106,29 @@ export const Header = React.memo(function Header() {
                 </Typography>
               </MaterialLink>
             </Link>
-            <Link href="/" passHref legacyBehavior>
-              <MaterialLink
-                sx={(theme) => ({
-                  background: theme.palette.primary.main,
-                  alignSelf: "stretch",
-                  px: 1,
-                  py: 2,
-                  alignItems: "center",
-                })}
-                underline="none"
-              >
-                <CartIcon
+            {!router.pathname.startsWith("/cart") ? (
+              <Link href="/cart/preview" passHref legacyBehavior>
+                <MaterialLink
                   sx={(theme) => ({
-                    color: theme.palette.common.white,
-                    fontSize: "36px",
+                    background: theme.palette.primary.main,
+                    alignSelf: "stretch",
+                    px: 1,
+                    py: 2,
+                    alignItems: "center",
                   })}
-                />
-              </MaterialLink>
-            </Link>
+                  underline="none"
+                >
+                  <CartIcon
+                    sx={(theme) => ({
+                      color: theme.palette.common.white,
+                      fontSize: "36px",
+                    })}
+                  />
+                </MaterialLink>
+              </Link>
+            ) : (
+              <Box sx={{ width: "52px" }}></Box>
+            )}
           </Stack>
         </Stack>
       </Container>
