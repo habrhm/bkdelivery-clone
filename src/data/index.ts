@@ -129,6 +129,7 @@ export const products: Product[] = [
     upsizePrice: 6818,
     optionalMealPrice: 15000,
     menuId: 3,
+    extraProducts: [6, 7, 8],
   },
   {
     id: 6,

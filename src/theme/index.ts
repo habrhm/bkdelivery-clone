@@ -10,6 +10,9 @@ const theme = createTheme({
       lineHeight: "20px",
       fontSize: "18px",
     },
+    allVariants: {
+      color: "#502314",
+    },
   },
   components: {
     MuiButton: {

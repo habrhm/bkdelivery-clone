@@ -11,19 +11,34 @@ import * as React from "react";
 
 import { SearchIcon } from "@/assets/icons";
 import { MenuItem } from "@/components/MenuItem";
-import { menus } from "@/data";
+import { menus, products } from "@/data";
 
 export const MenuLayout = ({ children }: React.PropsWithChildren) => {
   const router = useRouter();
-  const { menu } = router.query;
+  const { menu, product } = router.query;
+
+  const selectedProduct = React.useMemo(() => {
+    if (product) {
+      return products.find((item) => item.slug === product);
+    } else {
+      return null;
+    }
+  }, [product]);
 
   const selectedMenu = React.useMemo(() => {
-    if (menu) {
+    if (menu && router.pathname.startsWith("/menus")) {
       return menus.find((item) => item.slug === menu);
+    } else if (
+      product &&
+      router.pathname.startsWith("/products") &&
+      selectedProduct
+    ) {
+      return menus.find((item) => item.id === selectedProduct.menuId);
     } else {
       return menus[0];
     }
-  }, [menu]);
+  }, [menu, product, router.pathname, selectedProduct]);
+
   const theme = useTheme();
 
   const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
