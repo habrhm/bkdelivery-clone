@@ -17,7 +17,7 @@ import Image from "next/image";
 import Link from "next/link";
 import * as React from "react";
 
-import { Trashcon } from "@/assets/icons";
+import { TrashIcon } from "@/assets/icons";
 import { CountInput } from "@/components/CountInput";
 import { useOrderStore } from "@/hooks/useOrderStore";
 import { Order } from "@/types";
@@ -186,7 +186,7 @@ export const PreviewStep = React.memo(function PreviewStep({
                       })}
                       onClick={() => handleTrashOrder(item)}
                     >
-                      <Trashcon sx={{ fontSize: "16px" }} />
+                      <TrashIcon sx={{ fontSize: "16px" }} />
                     </IconButton>
                   </TableCell>
                 </TableRow>

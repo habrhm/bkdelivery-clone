@@ -30,6 +30,9 @@ const theme = createTheme({
       main: "#ed7801",
       dark: "#8b542f",
     },
+    background: {
+      paper: "#2D2D2D",
+    },
     text: {
       secondary: "#502314",
     },

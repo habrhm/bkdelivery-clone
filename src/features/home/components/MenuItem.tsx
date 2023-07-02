@@ -19,7 +19,7 @@ interface Props extends CustomArrowProps {
 }
 
 export const MenuItem = React.memo(function MenuItem({ item }: Props) {
-  const { containerRef, imageDimension } = useImageDimension({ ratio: 16 / 5 });
+  const { containerRef, imageDimension } = useImageDimension({ ratio: 6 / 10 });
 
   return (
     <Link key={item.id} href={`/menus/${item.slug}`} passHref legacyBehavior>
@@ -27,12 +27,17 @@ export const MenuItem = React.memo(function MenuItem({ item }: Props) {
         sx={{
           display: "flex",
           alignItems: "stretch",
-          justifyContent: "stretch",
+          flex: 1,
         }}
         underline="none"
       >
         <CardContainer>
-          <Box ref={containerRef}>
+          <Box
+            sx={{
+              width: "100%",
+            }}
+            ref={containerRef}
+          >
             <Image
               src={item.img}
               width={imageDimension.width}

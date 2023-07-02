@@ -28,7 +28,7 @@ export const MainLayout = ({ children, title, plainBg = false }: Props) => {
         minHeight="100vh"
       >
         <Header />
-        <Stack sx={{ flex: 1 }}>{children}</Stack>
+        <Stack sx={{ flex: 1, pt: { xs: "50px", lg: 0 } }}>{children}</Stack>
         <Footer />
       </Stack>
     </>

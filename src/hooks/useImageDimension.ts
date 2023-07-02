@@ -28,6 +28,7 @@ export const useImageDimension = ({ fixedHeight, ratio = 0.25 }: Props) => {
     handleResize();
 
     window.addEventListener("resize", handleResize);
+    return window.removeEventListener("resize", handleResize);
   }, [handleResize]);
 
   return { containerRef, imageDimension, imageUrl };

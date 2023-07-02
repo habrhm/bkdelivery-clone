@@ -3,7 +3,7 @@ import * as React from "react";
 
 import { getColor } from "@/utils/getColor";
 
-export const Trashcon = React.memo(function Trashcon({
+export const TrashIcon = React.memo(function TrashIcon({
   color,
   ...props
 }: SvgIconProps) {

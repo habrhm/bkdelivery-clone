@@ -19,103 +19,153 @@ import {
 
 export const Footer = React.memo(function Footer() {
   return (
-    <Box sx={{ background: "#2D2D2D", py: 1 }}>
+    <Box sx={{ background: "#2D2D2D", py: 2 }}>
       <Container maxWidth="lg">
-        <Stack sx={{ px: 12 }} spacing={1}>
+        <Stack
+          sx={{
+            px: 12,
+            alignItems: { xs: "center", lg: "flex-start" },
+            gap: { xs: 2, lg: 4 },
+          }}
+        >
           <Typography
             sx={(theme) => ({
               color: theme.palette.common.white,
+              fontSize: { xs: "25px", lg: "20px" },
             })}
-            variant="h6"
           >
             BURGER KING&reg; DELIVERY
           </Typography>
-          <Stack direction="row" spacing={4}>
-            <MaterialLink href="tel:1500025" underline="none">
-              <Stack sx={{ alignItems: "center" }} direction="row">
-                <PhoneIcon sx={{ color: "white", fontSize: "18px" }} />
-                <Typography
-                  sx={(theme) => ({
-                    color: theme.palette.common.white,
-                  })}
-                  variant="h6"
-                >
-                  15000 25
-                </Typography>
-              </Stack>
-            </MaterialLink>
-
-            <MaterialLink
-              href="mailto:guestservice@burgerking.co.id"
-              underline="none"
+          <Stack
+            sx={{
+              alignItems: "center",
+              flexDirection: { xs: "column", lg: "row" },
+              gap: { xs: 2, lg: 4 },
+            }}
+            direction="row"
+          >
+            <Stack
+              sx={{
+                alignItems: "center",
+              }}
+              direction="row"
+              spacing={4}
             >
-              <Stack sx={{ alignItems: "center" }} direction="row">
-                <MailIcon
-                  sx={(theme) => ({
-                    pr: 1,
-                    color: theme.palette.common.white,
-                  })}
-                />
+              <MaterialLink href="tel:1500025" underline="none">
+                <Stack sx={{ alignItems: "center" }} direction="row">
+                  <PhoneIcon
+                    sx={{
+                      color: "white",
+                      fontSize: { xs: "28px", lg: "18px" },
+                    }}
+                  />
+                  <Typography
+                    sx={(theme) => ({
+                      color: theme.palette.common.white,
+                      fontSize: { xs: "28px", lg: "18px" },
+                    })}
+                  >
+                    15000 25
+                  </Typography>
+                </Stack>
+              </MaterialLink>
+              <MaterialLink
+                href="mailto:guestservice@burgerking.co.id"
+                underline="none"
+              >
+                <Stack sx={{ alignItems: "center" }} direction="row">
+                  <MailIcon
+                    sx={(theme) => ({
+                      pr: 1,
+                      color: theme.palette.common.white,
+                      fontSize: { xs: "28px", lg: "18px" },
+                    })}
+                  />
 
-                <Typography
-                  sx={(theme) => ({
-                    color: theme.palette.common.white,
-                  })}
-                  variant="subtitle1"
-                >
-                  guestservice@burgerking.co.id
-                </Typography>
-              </Stack>
-            </MaterialLink>
+                  <Typography
+                    sx={(theme) => ({
+                      color: theme.palette.common.white,
+                      fontSize: "15px",
+                      fontWeight: "300",
+                    })}
+                  >
+                    guestservice@burgerking.co.id
+                  </Typography>
+                </Stack>
+              </MaterialLink>
+            </Stack>
             <Stack
               sx={(theme) => ({
                 color: theme.palette.common.white,
-                fontSize: "22px",
+                fontSize: { xs: "28px", lg: "18px" },
+                alignItems: "center",
+                gap: { xs: 1.5, lg: 0.5 },
               })}
               direction="row"
-              spacing={0.5}
             >
-              <FacebookIcon />
-              <InstagramIcon />
-              <TwitterIcon />
-              <YoutubeIcon />
+              <FacebookIcon sx={{ fontSize: "inherit" }} />
+              <InstagramIcon sx={{ fontSize: "inherit" }} />
+              <TwitterIcon sx={{ fontSize: "inherit" }} />
+              <YoutubeIcon sx={{ fontSize: "inherit" }} />
             </Stack>
           </Stack>
           <Stack
             sx={(theme) => ({
-              color: theme.palette.grey[500],
+              color: {
+                xs: theme.palette.common.white,
+                lg: theme.palette.grey[500],
+              },
+              fontSize: { xs: "15px", lg: "12px" },
+              fontWeight: "300",
+              flexDirection: { xs: "column", lg: "row" },
+              alignItems: { xs: "center", lg: "flex-start" },
+              gap: { xs: 0.25, lg: 1.5 },
+              pt: { xs: 2, lg: 0 },
             })}
-            direction="row"
-            spacing={2}
           >
-            <Typography variant="caption">About Us</Typography>
+            <Typography sx={{ color: "inherit", font: "inherit" }}>
+              About Us
+            </Typography>
             <Divider
               sx={(theme) => ({
                 borderColor: theme.palette.grey[500],
-              })}
-              orientation="vertical"
-              variant="inset"
-              flexItem
-            />
-            <Typography variant="caption">Kebijakan Privasi</Typography>
-            <Divider
-              sx={(theme) => ({
-                borderColor: theme.palette.grey[500],
+                my: 0.5,
               })}
               orientation="vertical"
               variant="middle"
               flexItem
             />
-            <Typography variant="caption">Syarat dan Ketentuan</Typography>
+            <Typography sx={{ color: "inherit", font: "inherit" }}>
+              Kebijakan Privasi
+            </Typography>
             <Divider
               sx={(theme) => ({
                 borderColor: theme.palette.grey[500],
+                my: 0.5,
               })}
               orientation="vertical"
               variant="middle"
               flexItem
             />
-            <Typography variant="caption">
+            <Typography sx={{ color: "inherit", font: "inherit" }}>
+              Syarat dan Ketentuan
+            </Typography>
+            <Divider
+              sx={(theme) => ({
+                borderColor: theme.palette.grey[500],
+                my: 0.5,
+              })}
+              orientation="vertical"
+              variant="middle"
+              flexItem
+            />
+            <Typography
+              sx={(theme) => ({
+                color: theme.palette.grey[500],
+                font: "inherit",
+                pt: { xs: 2, lg: 0 },
+              })}
+            >
               TM & © 2023 Burger King Corporation. Used Under License. All
               rights reserved.
             </Typography>
