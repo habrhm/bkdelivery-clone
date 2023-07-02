@@ -18,7 +18,7 @@ export const ProductImage = React.memo(function ProductImage({
   });
 
   return (
-    <Box sx={{ maxWidth: { xs: "290px", lg: "auto" } }} ref={containerRef}>
+    <Box sx={{ width: { xs: "250px", lg: "auto" } }} ref={containerRef}>
       <Image
         src={url}
         width={imageDimension.width}

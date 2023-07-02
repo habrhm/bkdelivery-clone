@@ -23,7 +23,7 @@ export const Footer = React.memo(function Footer() {
       <Container maxWidth="lg">
         <Stack
           sx={{
-            px: 12,
+            px: { xs: 0, lg: 12 },
             alignItems: { xs: "center", lg: "flex-start" },
             gap: { xs: 2, lg: 4 },
           }}
@@ -32,6 +32,7 @@ export const Footer = React.memo(function Footer() {
             sx={(theme) => ({
               color: theme.palette.common.white,
               fontSize: { xs: "25px", lg: "20px" },
+              textAlign: "center",
             })}
           >
             BURGER KING&reg; DELIVERY
@@ -47,9 +48,10 @@ export const Footer = React.memo(function Footer() {
             <Stack
               sx={{
                 alignItems: "center",
+                flexDirection: { xs: "column", md: "row" },
+                gap: { xs: 2, md: 4 },
               }}
               direction="row"
-              spacing={4}
             >
               <MaterialLink href="tel:1500025" underline="none">
                 <Stack sx={{ alignItems: "center" }} direction="row">

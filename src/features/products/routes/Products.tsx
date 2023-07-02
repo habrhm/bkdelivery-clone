@@ -1,4 +1,5 @@
-import { Button, Stack, Typography } from "@mui/material";
+import { Button, Stack, Typography, useMediaQuery } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 import { useRouter } from "next/router";
 import * as React from "react";
 
@@ -14,6 +15,8 @@ import { ProductImage } from "../components/ProductImage";
 export const ProductsPage = () => {
   const router = useRouter();
   const { product } = router.query;
+  const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
 
   const [itemCount, setitemCount] = React.useState(1);
   const [selectedExtras, setSelectedExtras] = React.useState<ExtraCount[]>([]);
@@ -85,8 +88,8 @@ export const ProductsPage = () => {
         background: theme.palette.common.white,
         boxShadow: theme.shadows[2],
         borderRadius: "10px",
+        flexDirection: { xs: "column", lg: "row" },
       })}
-      direction="row"
     >
       <Stack
         sx={{
@@ -154,18 +157,33 @@ export const ProductsPage = () => {
       </Stack>
       <Stack
         sx={(theme) => ({
-          px: 2.5,
-          py: 4,
-          width: "30%",
+          px: { xs: 2, lg: 2.5 },
+          py: { xs: 2, lg: 4 },
+          width: { xs: "100%", lg: "37%" },
           borderLeft: `0.5px solid ${theme.palette.grey[300]}`,
+          borderTop: {
+            xs: "none",
+            lg: `0.5px solid ${theme.palette.grey[900]}`,
+          },
+          flexDirection: { xs: "row", lg: "column" },
+          position: { xs: "fixed", lg: "unset" },
+          bottom: { xs: "0", lg: "unset" },
+          left: { xs: "0", lg: "unset" },
+          justifyContent: { xs: "space-between", lg: "flex-start" },
+          background: theme.palette.common.white,
+          boxSizing: "border-box",
+          gap: { xs: 0, lg: 2.5 },
+          alignItems: { xs: "center", lg: "stretch" },
         })}
-        spacing={2.5}
       >
         <Stack>
-          <Typography sx={{ fontSize: "28px" }} component="div">
+          <Typography
+            sx={{ fontSize: { xs: "17px", lg: "28px" } }}
+            component="div"
+          >
             {getCurrency(price)}
           </Typography>
-          {extras.length > 0 && (
+          {extras.length > 0 && isDesktop && (
             <Stack direction="row" spacing={1}>
               <Typography
                 sx={(theme) => ({
@@ -207,14 +225,27 @@ export const ProductsPage = () => {
             </Stack>
           )}
         </Stack>
-        <CountInput
-          count={itemCount}
-          onAdd={handleAddCount}
-          onSubstract={handleSubstractCount}
-        />
-        <Button variant="contained" onClick={handleAddOrder}>
-          Add to Cart
-        </Button>
+        <Stack
+          sx={{
+            flexDirection: { xs: "row", lg: "column" },
+            alignItems: { xs: "center", lg: "stretch" },
+            gap: { xs: 1, lg: 2.5 },
+          }}
+        >
+          <CountInput
+            count={itemCount}
+            onAdd={handleAddCount}
+            onSubstract={handleSubstractCount}
+            size={isDesktop ? "normal" : "small"}
+          />
+          <Button
+            size={isDesktop ? "medium" : "small"}
+            variant="contained"
+            onClick={handleAddOrder}
+          >
+            Add to Cart
+          </Button>
+        </Stack>
       </Stack>
     </Stack>
   );

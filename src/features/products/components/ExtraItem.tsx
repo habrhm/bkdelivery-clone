@@ -1,9 +1,14 @@
-import { Box, IconButton, Stack, Typography } from "@mui/material";
+import {
+  Box,
+  IconButton,
+  Stack,
+  Typography,
+  useMediaQuery,
+} from "@mui/material";
 import Image from "next/image";
 import * as React from "react";
 
 import { MinusIcon, PlusIcon } from "@/assets/icons";
-import { useImageDimension } from "@/hooks/useImageDimension";
 import { ExtraCount, Product } from "@/types";
 import { getCurrency } from "@/utils/getCurrency";
 
@@ -18,9 +23,8 @@ export const ExtraItem = React.memo(function ExtraItem({
   selectedExtras,
   setSelectedExtras,
 }: Props) {
-  const { containerRef, imageDimension } = useImageDimension({
-    ratio: 22 / 30,
-  });
+  const isMobileS = useMediaQuery("(max-width:375px)");
+  console.log(isMobileS);
 
   const currentSelectedExtra = selectedExtras.find(
     (extra) => extra.product.id === item.id
@@ -83,19 +87,19 @@ export const ExtraItem = React.memo(function ExtraItem({
       direction="row"
       spacing={2}
     >
-      <Box sx={{ width: "20%" }} ref={containerRef}>
-        <Image
-          src={item.thumbImg.url}
-          width={imageDimension.width}
-          height={imageDimension.height}
-          alt={item.thumbImg.alt}
-          style={{
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-          }}
-        />
-      </Box>
+      {!isMobileS && (
+        <Box sx={{ width: "20%", height: "100%", position: "relative" }}>
+          <Image
+            src={item.thumbImg.url}
+            fill
+            alt={item.thumbImg.alt}
+            style={{
+              objectFit: "contain",
+            }}
+          />
+        </Box>
+      )}
+
       <Stack sx={{ flex: 1 }}>
         <Typography sx={{ fontWeight: "200", fontSize: "12px" }}>
           {item.name}

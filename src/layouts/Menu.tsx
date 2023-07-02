@@ -20,7 +20,6 @@ import { useStateStore } from "@/hooks/useStateStore";
 export const MenuLayout = ({ children }: React.PropsWithChildren) => {
   const router = useRouter();
   const { menu, product } = router.query;
-
   const menuDrawerOpen = useStateStore((state) => state.menuDrawerOpen);
   const setMenuDrawerOpen = useStateStore((state) => state.setMenuDrawerOpen);
 
@@ -51,7 +50,7 @@ export const MenuLayout = ({ children }: React.PropsWithChildren) => {
 
   return (
     <>
-      <Container maxWidth="lg">
+      <Container sx={{ minHeight: "100vh" }} maxWidth="lg">
         <Stack
           sx={{
             py: { xs: 2, lg: 4 },
@@ -116,13 +115,19 @@ export const MenuLayout = ({ children }: React.PropsWithChildren) => {
               </>
             ) : (
               <Stack
-                sx={{ alignSelf: "stretch", mr: 2 }}
+                sx={{
+                  alignSelf: "stretch",
+                  mr: router.pathname.startsWith("/menus") ? 2 : 0,
+                }}
                 direction="row"
                 spacing={1}
               >
-                <Button sx={{ px: 6 }} variant="contained" size="large">
-                  <SearchIcon />
-                </Button>
+                {!router.pathname.startsWith("/products") && (
+                  <Button sx={{ px: 6 }} variant="contained" size="large">
+                    <SearchIcon />
+                  </Button>
+                )}
+
                 <Button
                   sx={{ flex: 1, justifyContent: "space-between" }}
                   size="large"
