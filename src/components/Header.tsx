@@ -175,7 +175,7 @@ export const Header = React.memo(function Header() {
 
           <Stack sx={{ alignItems: "center" }} direction="row" spacing={4}>
             {isDesktop && (
-              <Link href="/" passHref legacyBehavior>
+              <Link href="/accounts/login" passHref legacyBehavior>
                 <MaterialLink underline="none">
                   <Typography
                     sx={(theme) => ({

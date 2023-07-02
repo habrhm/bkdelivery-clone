@@ -3,7 +3,9 @@ import {
   Stack,
   Typography,
   Unstable_Grid2 as Grid,
+  useMediaQuery,
 } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 import * as React from "react";
 import Slider from "react-slick";
 
@@ -50,6 +52,8 @@ const promotions = [
 
 export const HomePage = () => {
   const [isDragging, setDragging] = React.useState(false);
+  const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
 
   return (
     <Stack sx={{ alignItems: "stretch", pb: 4 }} spacing={4}>
@@ -88,7 +92,7 @@ export const HomePage = () => {
           >
             Our Menus
           </Typography>
-          <Grid sx={{ width: "100%" }} container spacing={2}>
+          <Grid container spacing={isDesktop ? 2 : 0.5}>
             {menus.map((item) => (
               <Grid
                 key={item.id}

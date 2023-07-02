@@ -2,12 +2,13 @@ import {
   Box,
   Button,
   Link as MaterialLink,
-  OutlinedInput,
   Stack,
   Typography,
 } from "@mui/material";
 import Link from "next/link";
 import * as React from "react";
+
+import { TextInput } from "@/components/TextInput";
 
 export const DeliveryStep = React.memo(function DeliveryStep() {
   return (
@@ -30,28 +31,8 @@ export const DeliveryStep = React.memo(function DeliveryStep() {
         >
           GUEST DETAILS
         </Typography>
-        <OutlinedInput
-          sx={(theme) => ({
-            fontWeight: "300",
-            fontSize: "15px",
-            "& fieldset": {
-              border: `0.5px solid ${theme.palette.grey[300]} !important`,
-            },
-            mb: 1.25,
-          })}
-          name="name"
-          size="small"
-          placeholder="Full Name"
-        />
-        <OutlinedInput
-          sx={(theme) => ({
-            fontWeight: "300",
-            fontSize: "15px",
-            "& fieldset": {
-              border: `0.5px solid ${theme.palette.grey[300]} !important`,
-            },
-            mb: 1.25,
-          })}
+        <TextInput name="name" size="small" placeholder="Full Name" />
+        <TextInput
           name="mobile_number"
           size="small"
           placeholder="Mobile Number"
@@ -120,15 +101,7 @@ export const DeliveryStep = React.memo(function DeliveryStep() {
             ' Tambahkan catatan atau acuan jika perlu (contoh: "di sebelah salon")'
           }
         </Typography>
-        <OutlinedInput
-          sx={(theme) => ({
-            fontWeight: "300",
-            fontSize: "15px",
-            "& fieldset": {
-              border: `0.5px solid ${theme.palette.grey[300]} !important`,
-            },
-            mb: 1.25,
-          })}
+        <TextInput
           name="address"
           size="small"
           placeholder="Mohon set lokasi pengantaran di peta sebelum mengisi alamat pengantaran"

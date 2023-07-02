@@ -3,7 +3,6 @@ import {
   Button,
   IconButton,
   Link as MaterialLink,
-  OutlinedInput,
   Stack,
   Table,
   TableBody,
@@ -21,6 +20,7 @@ import * as React from "react";
 
 import { TrashIcon } from "@/assets/icons";
 import { CountInput } from "@/components/CountInput";
+import { TextInput } from "@/components/TextInput";
 import { useOrderStore } from "@/hooks/useOrderStore";
 import { Order } from "@/types";
 import { getCurrency } from "@/utils/getCurrency";
@@ -236,14 +236,7 @@ export const PreviewStep = React.memo(function PreviewStep({
           <Typography sx={{ fontWeight: "300", fontSize: "13px" }}>
             Add Notes
           </Typography>
-          <OutlinedInput
-            sx={(theme) => ({
-              fontWeight: "300",
-              fontSize: "15px",
-              "& fieldset": {
-                border: `0.5px solid ${theme.palette.grey[300]} !important`,
-              },
-            })}
+          <TextInput
             name="notes"
             size="small"
             placeholder="Add notes to your order here..."

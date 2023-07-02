@@ -4,14 +4,15 @@ import {
   Link as MaterialLink,
   Stack,
   Typography,
+  useMediaQuery,
 } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 import Image from "next/image";
 import Link from "next/link";
 import * as React from "react";
 import { CustomArrowProps } from "react-slick";
 
 import { CardContainer } from "@/components/CardContainer";
-import { useImageDimension } from "@/hooks/useImageDimension";
 import { Menu } from "@/types";
 
 interface Props extends CustomArrowProps {
@@ -19,7 +20,8 @@ interface Props extends CustomArrowProps {
 }
 
 export const MenuItem = React.memo(function MenuItem({ item }: Props) {
-  const { containerRef, imageDimension } = useImageDimension({ ratio: 6 / 10 });
+  const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
 
   return (
     <Link key={item.id} href={`/menus/${item.slug}`} passHref legacyBehavior>
@@ -27,6 +29,7 @@ export const MenuItem = React.memo(function MenuItem({ item }: Props) {
         sx={{
           display: "flex",
           alignItems: "stretch",
+          flex: "1",
         }}
         underline="none"
       >
@@ -34,18 +37,19 @@ export const MenuItem = React.memo(function MenuItem({ item }: Props) {
           <Box
             sx={{
               width: "100%",
+              position: "unset",
             }}
-            ref={containerRef}
           >
             <Image
               src={item.img}
-              width={imageDimension.width}
-              height={imageDimension.height}
+              width={0}
+              height={0}
+              sizes="100vw"
               alt="a"
               style={{
                 width: "100%",
-                height: "100%",
-                objectFit: "cover",
+                height: "unset",
+                objectFit: "contain",
               }}
             />
           </Box>
@@ -63,15 +67,17 @@ export const MenuItem = React.memo(function MenuItem({ item }: Props) {
                 color: theme.palette.primary.dark,
                 fontWeight: "700",
                 lineHeight: 1.2,
+                fontSize: "21px",
                 mt: 1.125,
               })}
-              variant="h6"
             >
               {item.name}
             </Typography>
-            <Button sx={{ px: 6.25 }} variant="contained">
-              Order
-            </Button>
+            {isDesktop && (
+              <Button sx={{ px: 6.25 }} variant="contained">
+                Order
+              </Button>
+            )}
           </Stack>
         </CardContainer>
       </MaterialLink>
