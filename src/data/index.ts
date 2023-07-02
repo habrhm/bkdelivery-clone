@@ -196,4 +196,8 @@ export const promotions = [
     img: "https://bkdelivery.co.id/media/slider_image/2023/5/17/9wdinwtmukcrcrboijdat6.jpg",
     url: "/news/cheeseburger-10k",
   },
+  {
+    img: "https://bkdelivery.co.id/media/slider_image/2023/5/17/9wdinwtmukcrcrboijdat6.jpg",
+    url: "/news/cheeseburger-10k",
+  },
 ];

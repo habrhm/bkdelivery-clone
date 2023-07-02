@@ -16,7 +16,7 @@ export const SliderItem = React.memo(function SliderItem({
   url,
   isDragging,
 }: Props) {
-  const { containerRef, imageDimension } = useImageDimension({ ratio: 16 / 5 });
+  const { containerRef, imageDimension } = useImageDimension({ ratio: 5 / 16 });
 
   const handleClick = React.useCallback(
     (e: React.MouseEvent<HTMLElement>) => {
@@ -28,7 +28,7 @@ export const SliderItem = React.memo(function SliderItem({
   );
 
   return (
-    <Stack ref={containerRef} width="100%">
+    <Stack ref={containerRef} sx={{ height: "auto" }} width="100%">
       <Link href={url} passHref legacyBehavior>
         <MaterialLink onClick={handleClick} underline="none">
           <Image
