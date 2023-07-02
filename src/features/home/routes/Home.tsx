@@ -9,46 +9,11 @@ import { useTheme } from "@mui/material/styles";
 import * as React from "react";
 import Slider from "react-slick";
 
-import { menus } from "@/data";
+import { menus, promotions } from "@/data";
 
 import { MenuItem } from "../components/MenuItem";
 import { SliderArrow } from "../components/SliderArrow";
 import { SliderItem } from "../components/SliderItem";
-
-const promotions = [
-  {
-    img: "https://bkdelivery.co.id/media/slider_image/2023/6/28/fbmq8tgwcmkyxaskqhosbd.jpg",
-    url: "/news-v1/bk-payday-50",
-  },
-  {
-    img: "https://bkdelivery.co.id/media/slider_image/2023/6/21/hyrvweknmcxjkzb5soktmx.jpg",
-    url: "/",
-  },
-  {
-    img: "https://bkdelivery.co.id/media/slider_image/2023/5/15/8wjfofeq3vtqmpshlrw3h2.jpg",
-    url: "/menus/kings-chicken-rasa-baru",
-  },
-  {
-    img: "https://bkdelivery.co.id/media/slider_image/2023/5/15/8wjfofeq3vtqmpshlrw3h2.jpg",
-    url: "/menus/kings-chicken-rasa-baru",
-  },
-  {
-    img: "https://bkdelivery.co.id/media/slider_image/2023/5/15/8wjfofeq3vtqmpshlrw3h2.jpg",
-    url: "/menus/kings-chicken-rasa-baru",
-  },
-  {
-    img: "https://bkdelivery.co.id/media/slider_image/2023/5/15/8wjfofeq3vtqmpshlrw3h2.jpg",
-    url: "/menus/kings-chicken-rasa-baru",
-  },
-  {
-    img: "https://bkdelivery.co.id/media/slider_image/2023/5/15/8wjfofeq3vtqmpshlrw3h2.jpg",
-    url: "/menus/kings-chicken-rasa-baru",
-  },
-  {
-    img: "https://bkdelivery.co.id/media/slider_image/2023/5/15/8wjfofeq3vtqmpshlrw3h2.jpg",
-    url: "/menus/kings-chicken-rasa-baru",
-  },
-];
 
 export const HomePage = () => {
   const [isDragging, setDragging] = React.useState(false);

@@ -140,7 +140,7 @@ export const Header = React.memo(function Header() {
                     </Typography>
                   </MaterialLink>
                 </Link>
-                <Link href="/" passHref legacyBehavior>
+                <Link href="/news" passHref legacyBehavior>
                   <MaterialLink underline="none">
                     <Typography
                       sx={(theme) => ({
@@ -285,7 +285,7 @@ export const Header = React.memo(function Header() {
                 </Typography>
               </MaterialLink>
             </Link>
-            <Link href="/" passHref legacyBehavior>
+            <Link href="/news" passHref legacyBehavior>
               <MaterialLink underline="none">
                 <Typography
                   sx={(theme) => ({

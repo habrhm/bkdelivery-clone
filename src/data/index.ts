@@ -178,3 +178,22 @@ export const products: Product[] = [
     slug: "american-cheese",
   },
 ];
+
+export const promotions = [
+  {
+    img: "https://bkdelivery.co.id/media/slider_image/2023/6/28/fbmq8tgwcmkyxaskqhosbd.jpg",
+    url: "/news/bk-payday-50",
+  },
+  {
+    img: "https://bkdelivery.co.id/media/slider_image/2023/6/21/hyrvweknmcxjkzb5soktmx.jpg",
+    url: "/",
+  },
+  {
+    img: "https://bkdelivery.co.id/media/slider_image/2023/5/15/8wjfofeq3vtqmpshlrw3h2.jpg",
+    url: "/menus/kings-chicken-rasa-baru",
+  },
+  {
+    img: "https://bkdelivery.co.id/media/slider_image/2023/5/17/9wdinwtmukcrcrboijdat6.jpg",
+    url: "/news/cheeseburger-10k",
+  },
+];
