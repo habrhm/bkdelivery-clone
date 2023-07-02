@@ -18,7 +18,7 @@ export const MenuItem = React.memo(function MenuItem({
 
   return (
     <Link key={item.id} href={`/menus/${item.slug}`} passHref legacyBehavior>
-      <MaterialLink underline="none">
+      <MaterialLink sx={{ flex: 1 }} underline="none">
         <Stack
           sx={(theme) => ({
             borderRadius: "10px",

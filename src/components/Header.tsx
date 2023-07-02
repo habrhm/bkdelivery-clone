@@ -18,6 +18,17 @@ import * as React from "react";
 
 import { CartIcon, CloseIcon, MenuIcon } from "@/assets/icons";
 import { useOrderStore } from "@/hooks/useOrderStore";
+import { useStateStore } from "@/hooks/useStateStore";
+
+const useHasHydrated = () => {
+  const [hasHydrated, setHasHydrated] = React.useState<boolean>(false);
+
+  React.useEffect(() => {
+    setHasHydrated(true);
+  }, []);
+
+  return hasHydrated;
+};
 
 export const Header = React.memo(function Header() {
   const router = useRouter();
@@ -25,10 +36,17 @@ export const Header = React.memo(function Header() {
   const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
   const orders = useOrderStore((state) => state.orders);
   const [drawerOpen, setDrawerOpen] = React.useState(false);
+  const setMenuDrawerOpen = useStateStore((state) => state.setMenuDrawerOpen);
+  const menuDrawerOpen = useStateStore((state) => state.menuDrawerOpen);
+  const hasHydrated = useHasHydrated();
 
   const handleToggleDrawer = React.useCallback(() => {
-    setDrawerOpen(!drawerOpen);
-  }, [drawerOpen]);
+    if (menuDrawerOpen) {
+      setMenuDrawerOpen(false);
+    } else {
+      setDrawerOpen(!drawerOpen);
+    }
+  }, [drawerOpen, menuDrawerOpen, setMenuDrawerOpen]);
 
   const orderCount = React.useMemo(() => {
     let count = 0;
@@ -41,8 +59,9 @@ export const Header = React.memo(function Header() {
   }, [orders]);
 
   React.useEffect(() => {
+    setMenuDrawerOpen(false);
     setDrawerOpen(false);
-  }, [router.pathname]);
+  }, [router.asPath, setMenuDrawerOpen]);
 
   return (
     <AppBar
@@ -146,7 +165,7 @@ export const Header = React.memo(function Header() {
             </Stack>
           ) : (
             <IconButton color="primary" onClick={handleToggleDrawer}>
-              {drawerOpen ? (
+              {drawerOpen || menuDrawerOpen ? (
                 <CloseIcon sx={{ color: "inherit", fontSize: "32px" }} />
               ) : (
                 <MenuIcon sx={{ color: "inherit", fontSize: "32px" }} />
@@ -189,7 +208,7 @@ export const Header = React.memo(function Header() {
                       fontSize: { xs: "34px", lg: "36px" },
                     })}
                   />
-                  {orderCount > 0 && (
+                  {hasHydrated && orderCount > 0 ? (
                     <Typography
                       sx={(theme) => ({
                         color: theme.palette.common.white,
@@ -209,6 +228,8 @@ export const Header = React.memo(function Header() {
                     >
                       {orderCount}
                     </Typography>
+                  ) : (
+                    <></>
                   )}
                 </MaterialLink>
               </Link>

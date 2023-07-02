@@ -11,5 +11,6 @@ export * from "./Phone";
 export * from "./Plus";
 export * from "./Search";
 export * from "./Trash";
+export * from "./Triangle";
 export * from "./Twitter";
 export * from "./Youtube";

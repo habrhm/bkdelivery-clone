@@ -11,9 +11,9 @@ export const MenuIcon = React.memo(function MenuIcon({
     <SvgIcon viewBox="0 0 20 20" {...props}>
       <path
         fill={getColor(color)}
-        fill-rule="evenodd"
+        fillRule="evenodd"
         d="M3 5a1 1 0 0 1 1-1h12a1 1 0 1 1 0 2H4a1 1 0 0 1-1-1Zm0 5a1 1 0 0 1 1-1h12a1 1 0 1 1 0 2H4a1 1 0 0 1-1-1Zm0 5a1 1 0 0 1 1-1h12a1 1 0 1 1 0 2H4a1 1 0 0 1-1-1Z"
-        clip-rule="evenodd"
+        clipRule="evenodd"
       />
     </SvgIcon>
   );

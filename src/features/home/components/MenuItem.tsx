@@ -27,7 +27,6 @@ export const MenuItem = React.memo(function MenuItem({ item }: Props) {
         sx={{
           display: "flex",
           alignItems: "stretch",
-          flex: 1,
         }}
         underline="none"
       >
