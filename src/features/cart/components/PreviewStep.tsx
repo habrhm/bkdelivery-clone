@@ -12,7 +12,9 @@ import {
   TableHead,
   TableRow,
   Typography,
+  useMediaQuery,
 } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 import Image from "next/image";
 import Link from "next/link";
 import * as React from "react";
@@ -33,6 +35,8 @@ export const PreviewStep = React.memo(function PreviewStep({
   note,
   setNote,
 }: Props) {
+  const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
   const orders = useOrderStore((state) => state.orders);
   const addOrder = useOrderStore((state) => state.addOrder);
   const removeOrder = useOrderStore((state) => state.removeOrder);
@@ -83,52 +87,70 @@ export const PreviewStep = React.memo(function PreviewStep({
   );
 
   return (
-    <Stack direction="row">
-      <Stack sx={{ flex: 1, px: 3.5, py: 3 }} spacing={2}>
+    <Stack sx={{ flexDirection: { xs: "column", lg: "row" } }}>
+      <Stack
+        sx={{ flex: 1, px: { xs: 2, lg: 3.5 }, py: { xs: 1, lg: 3 } }}
+        spacing={2}
+      >
         <TableContainer>
           <Table size="small">
             <TableHead>
               <TableRow>
-                <TableCell>Menu Item</TableCell>
-                <TableCell sx={{ width: "102px", p: "0px" }} align="left">
+                <TableCell sx={{ px: { xs: 0, lg: 2 } }}>Menu Item</TableCell>
+                <TableCell
+                  sx={{ width: { xs: "72px", lg: "102px" }, p: "0px" }}
+                  align="left"
+                >
                   Quantity
                 </TableCell>
-                <TableCell sx={{ width: "102px", p: "0px" }} align="right">
+                <TableCell
+                  sx={{ width: { xs: "72px", lg: "102px" }, p: "0px" }}
+                  align="right"
+                >
                   Subtotal
                 </TableCell>
-                <TableCell
-                  sx={{ width: "28px", p: "0px" }}
-                  align="center"
-                ></TableCell>
+                {isDesktop && (
+                  <TableCell
+                    sx={{ width: "28px", p: "0px" }}
+                    align="center"
+                  ></TableCell>
+                )}
               </TableRow>
             </TableHead>
             <TableBody>
               {orders.map((item) => (
                 <TableRow>
                   <TableCell
-                    sx={{ height: "44px", py: 2 }}
+                    sx={{ height: "44px", py: 2, px: { xs: 0, lg: 2 } }}
                     component="th"
                     scope="row"
                   >
                     <Stack direction="row" spacing={1}>
-                      <Box>
-                        <Image
-                          src={item.product.thumbImg.url}
-                          width={50}
-                          height={36}
-                          alt={item.product.thumbImg.alt}
-                          style={{
-                            objectFit: "cover",
-                          }}
-                        />
-                      </Box>
+                      {isDesktop && (
+                        <Box>
+                          <Image
+                            src={item.product.thumbImg.url}
+                            width={50}
+                            height={36}
+                            alt={item.product.thumbImg.alt}
+                            style={{
+                              objectFit: "cover",
+                            }}
+                          />
+                        </Box>
+                      )}
+
                       <Stack
                         sx={{
                           flex: 1,
                         }}
                       >
                         <Typography
-                          sx={{ fontSize: "14px", fontWeight: "300", mb: 0.5 }}
+                          sx={{
+                            fontSize: { xs: "12px", lg: "14px" },
+                            fontWeight: "300",
+                            mb: 0.5,
+                          }}
                         >
                           {item.product.name}
                         </Typography>
@@ -168,27 +190,29 @@ export const PreviewStep = React.memo(function PreviewStep({
                       sx={{
                         py: 0.5,
                         fontWeight: "300",
-                        fontSize: "14px",
+                        fontSize: { xs: "12px", lg: "14px" },
                       }}
                     >
                       {getCurrency(getItemSubtotal(item))}
                     </Typography>
                   </TableCell>
-                  <TableCell
-                    sx={{ px: 0, py: 2, verticalAlign: "top" }}
-                    align="right"
-                  >
-                    <IconButton
-                      sx={() => ({
-                        my: 0.25,
-                        height: "24px",
-                        width: "24px",
-                      })}
-                      onClick={() => handleTrashOrder(item)}
+                  {isDesktop && (
+                    <TableCell
+                      sx={{ px: 0, py: 2, verticalAlign: "top" }}
+                      align="right"
                     >
-                      <TrashIcon sx={{ fontSize: "16px" }} />
-                    </IconButton>
-                  </TableCell>
+                      <IconButton
+                        sx={() => ({
+                          my: 0.25,
+                          height: "24px",
+                          width: "24px",
+                        })}
+                        onClick={() => handleTrashOrder(item)}
+                      >
+                        <TrashIcon sx={{ fontSize: "16px" }} />
+                      </IconButton>
+                    </TableCell>
+                  )}
                 </TableRow>
               ))}
             </TableBody>
@@ -201,7 +225,7 @@ export const PreviewStep = React.memo(function PreviewStep({
                 alignSelf: "flex-start",
                 color: theme.palette.primary.main,
                 fontWeight: "300",
-                fontSize: "18px",
+                fontSize: { xs: "12px", lg: "18px" },
               })}
             >
               Continue Shopping
@@ -243,24 +267,38 @@ export const PreviewStep = React.memo(function PreviewStep({
 
       <Stack
         sx={(theme) => ({
-          width: "25%",
+          width: { xs: "auto", lg: "25%" },
           px: 3.5,
           py: 3,
           borderLeft: `0.5px solid ${theme.palette.grey[300]}`,
+          borderTop: {
+            xs: `0.5px solid ${theme.palette.grey[300]}`,
+            lg: "none",
+          },
         })}
         spacing={2}
       >
         <Stack spacing={0.5}>
-          <Typography sx={{ fontWeight: "300", fontSize: "13px" }}>
-            Order Subtotal*
-          </Typography>
-          <Typography sx={{ fontSize: "28px" }}>
-            {getCurrency(orderTotal)}
-          </Typography>
+          <Stack
+            sx={{
+              flexDirection: { xs: "row", lg: "column" },
+              alignItems: { xs: "center", lg: "flex-start" },
+              justifyContent: { xs: "space-between", lg: "flex-start" },
+            }}
+          >
+            <Typography
+              sx={{ fontWeight: "300", fontSize: { xs: "15px", lg: "13px" } }}
+            >
+              Order Subtotal*
+            </Typography>
+            <Typography sx={{ fontSize: { xs: "23px", lg: "28px" } }}>
+              {getCurrency(orderTotal)}
+            </Typography>
+          </Stack>
           <Typography
             sx={(theme) => ({
               fontWeight: "300",
-              fontSize: "11px",
+              fontSize: { xs: "15px", lg: "11px" },
               color: theme.palette.grey[500],
             })}
           >

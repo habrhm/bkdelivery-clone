@@ -11,10 +11,10 @@ import * as React from "react";
 
 export const DeliveryStep = React.memo(function DeliveryStep() {
   return (
-    <Stack direction="row">
+    <Stack sx={{ flexDirection: { xs: "column", lg: "row" } }}>
       <Stack
         sx={{
-          width: "32%",
+          width: { xs: "auto", lg: "32%" },
 
           px: 3.5,
           py: 3,
@@ -28,7 +28,7 @@ export const DeliveryStep = React.memo(function DeliveryStep() {
           }}
           component="h2"
         >
-          GUEST DETALIS
+          GUEST DETAILS
         </Typography>
         <OutlinedInput
           sx={(theme) => ({

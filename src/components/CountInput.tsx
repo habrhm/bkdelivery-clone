@@ -43,7 +43,10 @@ export const CountInput = React.memo(function CountInput({
         <MinusIcon sx={{ fontSize: "18px" }} />
       </IconButton>
       <Typography
-        sx={{ fontSize: "17px", fontWeight: size === "normal" ? "500" : "300" }}
+        sx={{
+          fontSize: { xs: "12px", lg: "17px" },
+          fontWeight: size === "normal" ? "500" : "300",
+        }}
       >
         {count}
       </Typography>

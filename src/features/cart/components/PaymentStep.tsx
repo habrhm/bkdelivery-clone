@@ -9,6 +9,7 @@ import {
   TableHead,
   TableRow,
   Typography,
+  Unstable_Grid2 as Grid,
 } from "@mui/material";
 import Image from "next/image";
 import * as React from "react";
@@ -63,8 +64,11 @@ export const PaymentStep = React.memo(function PaymentStep({
   }, []);
 
   return (
-    <Stack direction="row">
-      <Stack sx={{ width: "50%", px: 3.5, py: 3 }} spacing={2}>
+    <Stack sx={{ flexDirection: { xs: "column", lg: "row" } }}>
+      <Stack
+        sx={{ width: { xs: "auto", lg: "50%" }, px: 3.5, py: 3 }}
+        spacing={2}
+      >
         <TableContainer>
           <Table size="small">
             <TableHead>
@@ -203,7 +207,7 @@ export const PaymentStep = React.memo(function PaymentStep({
 
       <Stack
         sx={(theme) => ({
-          width: "50%",
+          width: { xs: "auto", lg: "50%" },
           px: 3.5,
           py: 3,
           borderLeft: `0.5px solid ${theme.palette.grey[300]}`,
@@ -220,7 +224,13 @@ export const PaymentStep = React.memo(function PaymentStep({
             }
           </Typography>
         </Stack>
-        <Stack sx={{ justifyContent: "space-between" }} direction="row">
+        <Stack
+          sx={{
+            justifyContent: "space-between",
+            flexDirection: { xs: "column", lg: "row" },
+            gap: 2,
+          }}
+        >
           <Button
             sx={(theme) => ({ color: theme.palette.primary.main })}
             variant="outlined"
@@ -232,66 +242,80 @@ export const PaymentStep = React.memo(function PaymentStep({
           </Typography>
         </Stack>
         <Stack spacing={0.5}>
-          <Typography sx={{ fontWeight: "300", fontSize: "13px" }}>
+          <Typography
+            sx={{ fontWeight: "300", fontSize: { xs: "15px", lg: "13px" } }}
+          >
             Pay With
           </Typography>
-          <Stack sx={{ justifyContent: "space-between" }} direction="row">
+          <Grid sx={{ width: "100%" }} container spacing={2}>
             {paymentMethods.map((item) => {
               const isSelected = item.name === selectedPayment;
 
               return (
-                <Box
-                  sx={(theme) => ({
-                    py: 0.5,
-                    px: 2.5,
-                    minWidth: "120px",
-                    border: `0.5px solid ${
-                      isSelected
-                        ? theme.palette.primary.main
-                        : theme.palette.grey[300]
-                    }`,
-                    borderRadius: "3px",
-                    cursor: "pointer",
-                    background: "transparent",
-                    position: "relative",
-                  })}
-                  component="button"
-                  onClick={() => {
-                    setSelectedPayment(item.name);
+                <Grid
+                  key={item.name}
+                  sx={{
+                    display: "flex",
+                    alignItems: "stretch",
+                    justifyContent: "stretch",
                   }}
+                  component="div"
+                  xs={6}
+                  lg={4}
                 >
-                  <Box>
-                    <Image
-                      src={item.image}
-                      width={60}
-                      height={18}
-                      style={{
-                        objectFit: "contain",
-                        width: "100%",
-                      }}
-                      alt="home"
-                    />
-                  </Box>
-                  {isSelected && (
-                    <Box
-                      sx={(theme) => ({
-                        position: "absolute",
-                        top: -8,
-                        right: -8,
-                        background: theme.palette.primary.main,
-                        width: "16px",
-                        height: "16px",
-
-                        borderRadius: "50%",
-                      })}
-                    >
-                      <CheckIcon sx={{ color: "white", fontSize: "15px" }} />
+                  <Box
+                    sx={(theme) => ({
+                      py: 0.5,
+                      px: 2.5,
+                      width: "100%",
+                      border: `0.5px solid ${
+                        isSelected
+                          ? theme.palette.primary.main
+                          : theme.palette.grey[300]
+                      }`,
+                      borderRadius: "3px",
+                      cursor: "pointer",
+                      background: "transparent",
+                      position: "relative",
+                    })}
+                    component="button"
+                    onClick={() => {
+                      setSelectedPayment(item.name);
+                    }}
+                  >
+                    <Box>
+                      <Image
+                        src={item.image}
+                        width={60}
+                        height={18}
+                        style={{
+                          objectFit: "contain",
+                          width: "100%",
+                        }}
+                        alt="home"
+                      />
                     </Box>
-                  )}
-                </Box>
+                    {isSelected && (
+                      <Box
+                        sx={(theme) => ({
+                          position: "absolute",
+                          top: -8,
+                          right: -8,
+                          background: theme.palette.primary.main,
+                          width: "16px",
+                          height: "16px",
+
+                          borderRadius: "50%",
+                        })}
+                      >
+                        <CheckIcon sx={{ color: "white", fontSize: "15px" }} />
+                      </Box>
+                    )}
+                  </Box>
+                </Grid>
               );
             })}
-          </Stack>
+          </Grid>
         </Stack>
 
         <Stack spacing={1}>

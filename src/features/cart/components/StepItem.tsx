@@ -39,16 +39,32 @@ export const StepItem = React.memo(function StepItem({
           ":before":
             currentStepIndex >= index && index < steps.length - 1
               ? {
-                  content: '""',
-                  width: "32px",
-                  height: "32px",
-                  position: "absolute",
-                  right: "-16px",
-                  top: "6px",
-                  transform: "rotate(45deg)",
                   background: theme.palette.secondary.main,
                   borderRadius: "2px 5px 2px 0px",
                   zIndex: 1000,
+                  position: "absolute",
+
+                  [theme.breakpoints.up("lg")]: {
+                    content: '""',
+                    width: "32px",
+                    height: "32px",
+                    right: "-16px",
+                    top: "6px",
+                    transform: "rotate(45deg)",
+                    background: theme.palette.secondary.main,
+                  },
+                  [theme.breakpoints.down("lg")]: {
+                    content: '""',
+                    width: 0,
+                    height: 0,
+                    right: "-9px",
+                    top: "0px",
+                    background: "transparent",
+                    transform: "none",
+                    borderTop: "24px solid transparent",
+                    borderLeft: `10px solid ${theme.palette.secondary.main}`,
+                    borderBottom: "24px solid transparent",
+                  },
                 }
               : {},
         })}
@@ -67,6 +83,7 @@ export const StepItem = React.memo(function StepItem({
             lineHeight: 0.75,
             p: 0.625,
             opacity: currentStepIndex >= index ? 1 : 0.5,
+            display: { xs: "none", lg: "block" },
           })}
           component="span"
         >
@@ -75,7 +92,7 @@ export const StepItem = React.memo(function StepItem({
 
         <Typography
           sx={(theme) => ({
-            fontSize: "21px",
+            fontSize: { xs: "19px", lg: "21px" },
             color: theme.palette.primary.dark,
             opacity: currentStepIndex >= index ? 1 : 0.5,
           })}

@@ -1,4 +1,5 @@
-import { Box, Container, Stack } from "@mui/material";
+import { Box, Container, Stack, useMediaQuery } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 import { useRouter } from "next/router";
 import * as React from "react";
 
@@ -10,24 +11,26 @@ import { PaymentStep } from "../components/PaymentStep";
 import { PreviewStep } from "../components/PreviewStep";
 import { StepItem } from "../components/StepItem";
 
-const steps = [
-  {
-    id: "preview",
-    name: "Cart",
-  },
-  {
-    id: "delivery",
-    name: "Delivery Info",
-  },
-  {
-    id: "payment",
-    name: "Payment",
-  },
-];
-
 export const CartPage = () => {
   const router = useRouter();
   const { step } = router.query;
+  const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
+
+  const steps = [
+    {
+      id: "preview",
+      name: "Cart",
+    },
+    {
+      id: "delivery",
+      name: !isDesktop ? "Delivery" : "Delivery Info",
+    },
+    {
+      id: "payment",
+      name: "Payment",
+    },
+  ];
 
   const [note, setNote] = React.useState("");
 
@@ -49,7 +52,12 @@ export const CartPage = () => {
     <Stack>
       <Container maxWidth="lg">
         <Stack
-          sx={{ px: 14, pr: 10, py: 4, alignItems: "stretch" }}
+          sx={{
+            px: { xs: 0, lg: 12 },
+            pr: { xs: 0, lg: 10 },
+            py: 4,
+            alignItems: "stretch",
+          }}
           spacing={3}
         >
           <Stack sx={{ alignItems: "stretch", height: "48px" }} direction="row">
