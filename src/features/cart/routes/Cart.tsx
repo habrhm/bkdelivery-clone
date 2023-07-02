@@ -21,7 +21,7 @@ export const CartPage = () => {
   } = useCart();
 
   return (
-    <Stack>
+    <Stack sx={{ minHeight: "100vh" }}>
       <Container maxWidth="lg">
         <Stack
           sx={{

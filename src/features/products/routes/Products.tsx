@@ -21,6 +21,7 @@ export const ProductsPage = () => {
     handleSubstractCount,
     setSelectedExtras,
   } = useProducts();
+
   return (
     <Stack
       sx={(theme) => ({

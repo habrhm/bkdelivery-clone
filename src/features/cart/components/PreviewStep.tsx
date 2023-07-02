@@ -300,9 +300,19 @@ export const PreviewStep = React.memo(function PreviewStep({
         </Stack>
 
         <Stack spacing={1}>
-          <Button variant="contained" size="large">
-            Login To Order
-          </Button>
+          <Link href={`/account/login`} passHref legacyBehavior>
+            <MaterialLink underline="none">
+              <Button
+                sx={{
+                  width: "100%",
+                }}
+                variant="contained"
+                size="large"
+              >
+                Login To Order
+              </Button>
+            </MaterialLink>
+          </Link>
           <Link href={`/cart/delivery`} passHref legacyBehavior>
             <MaterialLink underline="none">
               <Button
