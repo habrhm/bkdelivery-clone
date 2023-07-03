@@ -2,6 +2,10 @@
 
 Clone of [https://bkdelivery.co.id/](https://bkdelivery.co.id/) UI
 
+## App Demo
+
+Demo [https://bkdelivery-clone.vercel.app/](https://bkdelivery-clone.vercel.app/)
+
 ## Installation
 
 install dependencies:
